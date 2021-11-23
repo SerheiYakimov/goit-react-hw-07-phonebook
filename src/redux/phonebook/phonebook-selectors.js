@@ -5,7 +5,7 @@ export const getFilter = state => state.filter;
 
 export const getAllContacts = state => {
     const contacts = getContacts(state);
-    console.log(contacts);
+    // console.log(contacts);
     const filter = getFilter(state);
     const normalizeFilter = filter.toLowerCase();
     if (filter.length > 0) {

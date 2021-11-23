@@ -3,7 +3,7 @@ import PropsType from "prop-types";
 import { v4 as uuid } from "uuid";
 import s from "../Form/Form.module.css";
 // import { connect } from "react-redux";
-import { addNewContact } from '../../redux/phonebook/phonebook-actions';
+import { addContactSuccess } from '../../redux/phonebook/phonebook-actions';
 import { useDispatch, useSelector } from "react-redux";
 import { getContacts } from "../../redux/phonebook/phonebook-selectors";
 
@@ -42,7 +42,7 @@ export default function Form() {
     if (contacts.find((el) => el.name === contact.name)) {
         alert(`${contact.name} is already in contacts`);
       } else {
-        dispatch(addNewContact(contact));
+        dispatch(addContactSuccess(contact));
       };
 
     resetForm();

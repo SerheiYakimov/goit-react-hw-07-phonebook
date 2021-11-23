@@ -1,7 +1,7 @@
 import PropsType from "prop-types";
 import s from "../ContactListItem/ContactListItem.module.css";
 // import { connect } from "react-redux";
-import { deleteContact } from "../../redux/phonebook/phonebook-actions";
+import { deleteContactSuccess } from "../../redux/phonebook/phonebook-actions";
 import { useDispatch } from "react-redux";
 
 export function ContactListItem({ id, name, number }) {
@@ -14,7 +14,7 @@ export function ContactListItem({ id, name, number }) {
       </p>
       <button
         type="submit"
-        onClick={() => dispatch(deleteContact(id))}
+        onClick={() => dispatch(deleteContactSuccess(id))}
         className={s.button}
       >
         Delete
