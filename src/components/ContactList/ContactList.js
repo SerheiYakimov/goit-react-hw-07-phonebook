@@ -2,18 +2,19 @@
 import PropsType from "prop-types";
 import s from "../ContactList/ContactList.module.css";
 import { ContactListItem } from "../ContactListItem/ContactListItem";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from 'react';
+import { useSelector } from "react-redux";
+// import { useEffect } from 'react';
 import { getAllContacts } from "../../redux/phonebook/phonebook-selectors";
-import { getData } from '../../redux/phonebook/phonebook-api';
+// import { getData } from '../../redux/phonebook/phonebook-api';
 
 export function ContactList() {
   const contacts = useSelector(getAllContacts);
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getData(contacts));
-  }, [dispatch, contacts]);
+  // const dispatch = useDispatch(getData);
+
+  // useEffect(() => {
+  //   dispatch(getData(contacts));
+  // }, [dispatch, contacts]);
     
   
   

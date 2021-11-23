@@ -12,27 +12,28 @@ import {
     deleteContactError,
 } from "./phonebook-actions";
 
-axios.defaults.baseURL = 'https://619b80902782760017445631.mockapi.io/api/v1';
+// axios.defaults.baseURL = 'https://619b80902782760017445631.mockapi.io/api/v1';
 
-//async
+// async
 // export const getData = () =>  async dispatch => {
 //     dispatch(getContactsRequest())
 
 //     try {
-//         const { data } = await axios.get('/contacts');
-//         dispatch(getContactsSuccess(data));    
+//         const { data } = await axios.get('https://619b80902782760017445631.mockapi.io/api/v1/contacts');
+//          console.log(data);
+//         dispatch(getContactsSuccess(data));
+       
 //     } catch (error) {
 //         dispatch(getContactsError(error))
 //     }
 // };
 
-export const getData = () => dispatch => {
+export const getContacts = () => dispatch => {
     dispatch(getContactsRequest())
-    axios
-        .get('/contacts')
-        .then(({ data }) => {
-            console.log('operation', data);
-            dispatch(getContactsSuccess(data));
+    axios.get('https://619b80902782760017445631.mockapi.io/api/v1/contacts')
+        .then(data => {
+        console.log('operation', data);
+        dispatch(getContactsSuccess(data));
         })
         .catch (err => {
             console.log('operation', err);
@@ -42,10 +43,10 @@ export const getData = () => dispatch => {
 };
 
 
-export const addContact = () => dispatch => {
+export const addContact = contact => dispatch => {
     dispatch(addContactRequest())
     axios
-        .post('/contacts')
+        .post('https://619b80902782760017445631.mockapi.io/api/v1/contacts', contact)
         .then(data => {
             console.log('operation', data);
             dispatch(addContactSuccess(data));
@@ -58,7 +59,7 @@ export const addContact = () => dispatch => {
 
 export const deleteContact = (id) => dispatch => {
     dispatch(deleteContactRequest());
-    axios.delete(`/contacts/${id}`)
+    axios.delete(`https://619b80902782760017445631.mockapi.io/api/v1/contacts'/${id}`)
         .then(() => dispatch(deleteContactSuccess(id)))
         .catch(error => dispatch(deleteContactError(error)))
 }

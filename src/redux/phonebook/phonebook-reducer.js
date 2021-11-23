@@ -24,13 +24,14 @@ import {
 
 
 export const contacts = createReducer([], {
-  [getContactsSuccess]: (_, {payload}) => payload,
+  [getContactsSuccess]: (_, action) => action.payload,
   [addContactSuccess]: (state, action) => {
     return [...state, ...action.payload];
   },
   [deleteContactSuccess]: (state, { payload }) =>
     state.filter(contact => contact.id !== payload),
 });
+console.log(contacts);
   
 export const loading = createReducer(false, {
   [getContactsRequest]: (_, action) => true,
