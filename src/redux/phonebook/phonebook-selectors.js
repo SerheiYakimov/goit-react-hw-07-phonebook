@@ -2,9 +2,6 @@ export const getContacts = state => state.contacts;
 export const getFilter = state => state.filterReducer;
 
 
-
-
-
 export const getAllContacts = state => {
     const contacts = getContacts(state);
     const filter = getFilter(state);

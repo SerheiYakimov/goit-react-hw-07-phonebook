@@ -1,10 +1,9 @@
 import { useState } from "react";
 import PropsType from "prop-types";
 import s from "../Form/Form.module.css";
-// import { connect } from "react-redux";
 import { useDispatch, useSelector } from "react-redux";
 import { getContacts } from "../../redux/phonebook/phonebook-selectors";
-import { addContact } from '../../redux/phonebook/phonebook-operations'
+import { addThunkContact } from '../../redux/phonebook/phonebook-operations'
 
 export default function Form() {
   const [name, SetName] = useState('');
@@ -36,7 +35,7 @@ export default function Form() {
     if (contacts.find((el) => el.name === contact.name)) {
         alert(`${contact.name} is already in contacts`);
       } else {
-        dispatch(addContact(contact));
+        dispatch(addThunkContact(contact));
       };
 
     resetForm();
@@ -85,9 +84,3 @@ export default function Form() {
 Form.PropType = {
   onSubmit: PropsType.func.isRequired,
 };
-
-// const mapDispatchToProps = dispatch => ({
-//   addNewContact: (contact) => dispatch(addNewContact(contact)),
-// })
-
-// export default connect(null, mapDispatchToProps)(Form);

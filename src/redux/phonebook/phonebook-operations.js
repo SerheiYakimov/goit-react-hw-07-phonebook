@@ -1,53 +1,86 @@
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import {
-    getContactsRequest,
-    getContactsSuccess,
-    getContactsError,
-    addContactRequest,
-    addContactSuccess,
-    addContactError,
-    deleteContactRequest,
-    deleteContactSuccess,
-    deleteContactError,
-} from "./phonebook-actions";
+// import {
+//     getContactsRequest,
+//     getContactsSuccess,
+//     getContactsError,
+//     addContactRequest,
+//     addContactSuccess,
+//     addContactError,
+//     deleteContactRequest,
+//     deleteContactSuccess,
+//     deleteContactError,
+// } from "./phonebook-actions";
 
 axios.defaults.baseURL = 'https://619b80902782760017445631.mockapi.io/api/v1';
 
 
-export const getContacts = () => async dispatch => {
-    dispatch(getContactsRequest())
+export const getThunkContacts = createAsyncThunk('getContact', async (_, { rejectWithValue }) => {
     try {
         const { data } = await axios.get('/contacts');
-         console.log(data);
-        dispatch(getContactsSuccess(data));    
+        // console.log('thunkData', data);
+        return data;
     } catch (error) {
-        dispatch(getContactsError(error))
+        return rejectWithValue(error);
     }
-};
+});
 
-
-export const addContact = contact => async dispatch => {
-    dispatch(addContactRequest());
+export const addThunkContact = createAsyncThunk('addContact', async (contact, { rejectWithValue }) => {
     try {
         const { data } = await axios.post('/contacts', contact);
-        // console.log(contact);
-        // console.log(data);
-        dispatch(addContactSuccess(data));
+        return data;
     } catch (error) {
-        dispatch(addContactError(error));
+        return rejectWithValue(error);
     }
-}
+});
 
-export const deleteContact = id => async dispatch => {
-    dispatch(deleteContactRequest());
+export const deleteThunkContact = createAsyncThunk('deleteContact', async (id, { rejectWithValue }) => {
     try {
         await axios.delete(`/contacts/${id}`);
-        dispatch(deleteContactSuccess(id))
+        return id;
     } catch (error) {
-        dispatch(deleteContactError(error))
+        return rejectWithValue(error);
     }
-}
+})
 
+
+
+
+
+//async operations
+// export const getContacts = () => async dispatch => {
+//     dispatch(getContactsRequest())
+//     try {
+//         const { data } = await axios.get('/contacts');
+//          console.log(data);
+//         dispatch(getContactsSuccess(data));    
+//     } catch (error) {
+//         dispatch(getContactsError(error))
+//     }
+// };
+
+// export const addContact = contact => async dispatch => {
+//     dispatch(addContactRequest());
+//     try {
+//         const { data } = await axios.post('/contacts', contact);
+//         dispatch(addContactSuccess(data));
+//     } catch (error) {
+//         dispatch(addContactError(error));
+//     }
+// }
+
+// export const deleteContact = id => async dispatch => {
+//     dispatch(deleteContactRequest());
+//     try {
+//         await axios.delete(`/contacts/${id}`);
+//         dispatch(deleteContactSuccess(id))
+//     } catch (error) {
+//         dispatch(deleteContactError(error))
+//     }
+// }
+
+
+//operations
 // export const getContacts = () => dispatch => {
 //     dispatch(getContactsRequest())
 //     axios.get('/contacts')
@@ -59,7 +92,6 @@ export const deleteContact = id => async dispatch => {
 //         });
     
 // };
-
 
 // export const addContact = contact => dispatch => {
 //     dispatch(addContactRequest())

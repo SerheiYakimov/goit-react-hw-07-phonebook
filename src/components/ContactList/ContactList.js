@@ -5,7 +5,7 @@ import { ContactListItem } from "../ContactListItem/ContactListItem";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from 'react';
 import { getAllContacts } from "../../redux/phonebook/phonebook-selectors";
-import { getContacts } from '../../redux/phonebook/phonebook-operations';
+import { getThunkContacts } from '../../redux/phonebook/phonebook-operations';
 
 
 export function ContactList() {
@@ -13,10 +13,9 @@ export function ContactList() {
   const dispatch = useDispatch();
   
   useEffect(() => {
-    dispatch(getContacts());
+    dispatch(getThunkContacts());
   }, [dispatch]);
     
- 
   return (
     <ul className={s.list}>
       {contacts.map(({ id, name, number }) => (

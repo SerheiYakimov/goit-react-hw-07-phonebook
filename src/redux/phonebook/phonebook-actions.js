@@ -25,7 +25,7 @@ export const deleteContactSuccess = createAction('deleteContactSuccess');
 export const deleteContactError = createAction('deleteContactError');
 
 
-export const handleFilter = createAction('phonebookhandleFilter');
+export const handleFilter = createAction('phonebookHandleFilter');
 
 
 
