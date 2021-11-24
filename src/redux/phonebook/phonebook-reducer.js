@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-// import { addNewContact, deleteContact, handleFilter } from './phonebook-actions';
+// import { handleFilter } from './phonebook-actions';
 import {
   getContactsRequest,
   getContactsSuccess,
@@ -12,6 +12,7 @@ import {
   deleteContactError,
   handleFilter,
 } from "./phonebook-actions";
+// import { getContacts, addContact, deleteContact } from "./phonebook-operations";
 // import types from './phonebook-types';
 
 // const initialState = [
@@ -22,27 +23,26 @@ import {
   // ];
 
 
-
-export const contacts = createReducer([], {
+  export const contacts = createReducer([], {
   [getContactsSuccess]: (_, action) => action.payload,
   [addContactSuccess]: (state, action) => {
-    return [...state, ...action.payload];
+    return [...state, action.payload];
   },
   [deleteContactSuccess]: (state, { payload }) =>
     state.filter(contact => contact.id !== payload),
 });
-console.log(contacts);
+
   
 export const loading = createReducer(false, {
-  [getContactsRequest]: (_, action) => true,
-  [getContactsSuccess]: (_, action) => false,
-  [getContactsError]: (_, action) => false,
-  [addContactRequest]: (_, action) => true,
-  [addContactSuccess]: (_, action) => false,
-  [addContactError]: (_, action) => false,
-  [deleteContactRequest]: (_, action) => true,
-  [deleteContactSuccess]: (_, action) => false,
-  [deleteContactError]: (_, action) => false,
+  [getContactsRequest]: () => true,
+  [getContactsSuccess]: () => false,
+  [getContactsError]: () => false,
+  [addContactRequest]: () => true,
+  [addContactSuccess]: () => false,
+  [addContactError]: () => false,
+  [deleteContactRequest]: () => true,
+  [deleteContactSuccess]: () => false,
+  [deleteContactError]: () => false,
 });
 
   
@@ -52,6 +52,37 @@ export const error = createReducer(null, {
   [deleteContactError]: (_, action) => action.payload,
   
 });
+
+//async?
+// export const contacts = createReducer([], {
+//   [getContacts.fulfilled]: (_, action) => action.payload,
+//   [addContact.fulfilled]: (state, action) => {
+//     return [...state, action.payload];
+//   },
+//   [deleteContact.fulfilled]: (state, { payload }) =>
+//     state.filter(contact => contact.id !== payload),
+// });
+
+  
+// export const loading = createReducer(false, {
+//   [getContacts.pedning]: () => true,
+//   [getContacts.fulfilled]: () => false,
+//   [getContacts.rejected]: () => false,
+//   [addContact.pedning]: () => true,
+//   [addContact.fulfilled]: () => false,
+//   [addContact.rejected]: () => false,
+//   [deleteContact.pedning]: () => true,
+//   [deleteContact.fulfilled]: () => false,
+//   [deleteContact.rejected]: () => false,
+// });
+
+  
+// export const error = createReducer(null, {
+//   [getContacts.rejected]: (_, action) => action.payload,
+//   [addContact.rejected]: (_, action) => action.payload,
+//   [deleteContact.rejected]: (_, action) => action.payload,
+  
+// });
 
 export const filterReducer = createReducer('', {
   [handleFilter]: (_, { payload }) => payload,

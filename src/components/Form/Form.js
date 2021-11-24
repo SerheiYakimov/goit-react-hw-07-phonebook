@@ -1,21 +1,16 @@
 import { useState } from "react";
 import PropsType from "prop-types";
-import { v4 as uuid } from "uuid";
 import s from "../Form/Form.module.css";
 // import { connect } from "react-redux";
-import { addContactSuccess } from '../../redux/phonebook/phonebook-actions';
 import { useDispatch, useSelector } from "react-redux";
 import { getContacts } from "../../redux/phonebook/phonebook-selectors";
+import { addContact } from '../../redux/phonebook/phonebook-operations'
 
 export default function Form() {
   const [name, SetName] = useState('');
   const [number, SetNumber] = useState('');
   const contacts = useSelector(getContacts);
   const dispatch = useDispatch();
-
-
-  const idName = uuid();
-  const idNumber = uuid();
     
   const handleChange = (e) => {
       const { name, value } = e.target;
@@ -36,13 +31,12 @@ export default function Form() {
     const contact = {
       name,
       number,
-      id: uuid(),
       };
     
     if (contacts.find((el) => el.name === contact.name)) {
         alert(`${contact.name} is already in contacts`);
       } else {
-        dispatch(addContactSuccess(contact));
+        dispatch(addContact(contact));
       };
 
     resetForm();
@@ -55,13 +49,12 @@ export default function Form() {
 
     return (
       <form className={s.form} onSubmit={handleSubmit}>
-        <label className={s.label} htmlFor={idName}>
+        <label className={s.label}>
           Name
           <input
             className={s.input}
             type="text"
             name="name"
-            id={idName}
             value={name}
             onChange={handleChange}
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -69,13 +62,12 @@ export default function Form() {
             required
           />
         </label>
-        <label className={s.label} htmlFor={idNumber}>
+        <label className={s.label}>
           Number
           <input
             className={s.input}
             type="tel"
             name="number"
-            id={idNumber}
             value={number}
             onChange={handleChange}
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"

@@ -1,53 +1,32 @@
-// import types from './phonebook-types';
-
 import { createAction } from "@reduxjs/toolkit";
 
 //getcontacts
 // pending
-export const getContactsRequest = createAction('getContacts/Request');
+export const getContactsRequest = createAction('getContactsRequest');
 //resolved
-export const getContactsSuccess = createAction('getContacts/Success');
+export const getContactsSuccess = createAction('getContactsSuccess');
 // rejected
-export const getContactsError = createAction('getContacts/Error');
+export const getContactsError = createAction('getContactsError');
 
 //addContact
 // pending
-export const addContactRequest = createAction('addContact/Request');
+export const addContactRequest = createAction('addContactRequest');
 //resolved
-export const addContactSuccess = createAction('addContact/Success');
+export const addContactSuccess = createAction('addContactSuccess');
 // rejected
-export const addContactError = createAction('addContact/Error');
+export const addContactError = createAction('addContactError');
 
 //deleteContact
 // pending
-export const deleteContactRequest = createAction('deleteContact/Request');
+export const deleteContactRequest = createAction('deleteContactRequest');
 //resolved
-export const deleteContactSuccess = createAction('deleteContact/Success');
+export const deleteContactSuccess = createAction('deleteContactSuccess');
 // rejected
-export const deleteContactError = createAction('deleteContact/Error');
+export const deleteContactError = createAction('deleteContactError');
 
 
-export const handleFilter = createAction('phonebook/handleFilter');
+export const handleFilter = createAction('phonebookhandleFilter');
 
 
-//hooks
-// export const addNewContact = createAction('phonebook/add');
-// export const deleteContact = createAction('phonebook/delete');
-// export const handleFilter = createAction('phonebook/handleFilter');
 
-//vanilla js
-// const addNewContact = (contact) => ({
-//     type: types.ADD,
-//     payload: contact,
-// })
-
-// const deleteContact = (id) => ({
-//     type: types.DELETE,
-//     payload: id,
-// })
-
-// const handleFilter = value => ({
-//     type: types.HANDLE_FILTER,
-//     payload: value,
-// })
 

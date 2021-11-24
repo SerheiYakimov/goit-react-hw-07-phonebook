@@ -3,16 +3,16 @@ import { combineReducers } from "redux";
 import { configureStore } from "@reduxjs/toolkit";
 // import logger from "redux-logger";
 import { contacts, loading, error, filterReducer } from './phonebook/phonebook-reducer';
-// import {
-//     // persistStore,
-//     // persistReducer,
-//     FLUSH,
-//     REHYDRATE,
-//     PAUSE,
-//     PERSIST,
-//     PURGE,
-//     REGISTER,
-// } from 'redux-persist';
+import {
+    // persistStore,
+    // persistReducer,
+    FLUSH,
+    REHYDRATE,
+    PAUSE,
+    PERSIST,
+    PURGE,
+    REGISTER,
+} from 'redux-persist';
 // import storage from 'redux-persist/lib/storage';
 
 // const rootReducer = combineReducers({
@@ -34,20 +34,21 @@ const rootReducer = combineReducers({
 
 // const persistedContactsReducer = persistReducer(persistConfig, rootReducer);
 
-export const store = configureStore({
-  reducer: rootReducer,
-})
-
-
 // export const store = configureStore({
-//     reducer: rootReducer,
-//     middleware: (getDefaultMiddleware) =>
-//     getDefaultMiddleware({
-//       serializableCheck: {
-//         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-//       },
-//     }).concat(logger),
+//   reducer:  rootReducer,
 // })
+
+
+export const store = configureStore({
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+      // .concat(logger),
+})
 
 // export const persistor = persistStore(store);
 
